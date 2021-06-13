@@ -84,15 +84,19 @@ def index():
 
         # Get current values
         vote1 = r.get(button1).decode('utf-8')
-        tracer.span(name="Cats")
+        with tracer.span(name='voted for cats'):            
+            print('Voted for cats')
         #with tracer.span(name='span1'):
         #    print("cat vote")
         # TODO: use tracer object to trace cat vote
         vote2 = r.get(button2).decode('utf-8')
+        with tracer.span(name='voted for dogs'):            
+            print('Voted for dogs')
+
         # TODO: use tracer object to trace dog vote
         #with tracer.span(name='span1'):
         #    print("dog vote")
-        tracer.span(name="Dogs")
+        #tracer.span(name="Dogs")
 
         # Return index with values
         return render_template("index.html", value1=int(vote1), value2=int(vote2), button1=button1, button2=button2, title=title)
@@ -105,12 +109,12 @@ def index():
             r.set(button1,0)
             r.set(button2,0)
             vote1 = r.get(button1).decode('utf-8')
-            properties = {'custom_dimensions': {'Cats': vote1}}
-            logger.warning('Cats', extra=properties)
+            properties = {'custom_dimensions': {'Cats Vote': vote1}}
+            logger.warning('Voted for cats', extra=properties)
 
             vote2 = r.get(button2).decode('utf-8')
-            properties = {'custom_dimensions': {'Dogs': vote2}}
-            logger.warning('Dogs', extra=properties)
+            properties = {'custom_dimensions': {'Dogs Vote': vote2}}
+            logger.warning('Voted for dogs', extra=properties)
 
             return render_template("index.html", value1=int(vote1), value2=int(vote2), button1=button1, button2=button2, title=title)
 
@@ -131,4 +135,4 @@ if __name__ == "__main__":
     # comment line below when deploying to VMSS
     #app.run() # local
     # uncomment the line below before deployment to VMSS
-    app.run(host='0.0.0.0',threaded=True, debug=False) # remote
+    app.run(host='0.0.0.0',threaded=True, debug=True) # remote
