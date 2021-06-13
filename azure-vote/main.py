@@ -105,12 +105,12 @@ def index():
             r.set(button1,0)
             r.set(button2,0)
             vote1 = r.get(button1).decode('utf-8')
-            properties = {'custom_dimensions': {'Cats Vote': vote1}}
-            logger.warning('Cats', extra=properties)
+            properties = {'custom_dimensions': {'Cats': vote1}}
+            logger.warning('action', extra=properties)
 
             vote2 = r.get(button2).decode('utf-8')
-            properties = {'custom_dimensions': {'Dogs Vote': vote2}}
-            logger.warning('Dogs', extra=properties)
+            properties = {'custom_dimensions': {'Dogs': vote2}}
+            logger.warning('action', extra=properties)
 
             return render_template("index.html", value1=int(vote1), value2=int(vote2), button1=button1, button2=button2, title=title)
 
