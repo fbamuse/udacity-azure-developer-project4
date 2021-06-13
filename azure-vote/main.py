@@ -24,9 +24,9 @@ from opencensus.ext.flask.flask_middleware import FlaskMiddleware
 # Logging
 logger = logging.getLogger(__name__)
 # TODO: replace the all-zero GUID with your instrumentation key.
-#logger.addHandler(AzureLogHandler(
-#    connection_string='InstrumentationKey=acd254b2-d6fc-4337-b024-0dfc99f09841')
-#)
+logger.addHandler(AzureLogHandler(
+    connection_string='InstrumentationKey=acd254b2-d6fc-4337-b024-0dfc99f09841;IngestionEndpoint=https://westus2-2.in.applicationinsights.azure.com/')
+)
 
 # Metrics
 #exporter = metrics_exporter.new_metrics_exporter(
