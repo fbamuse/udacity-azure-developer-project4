@@ -36,9 +36,8 @@ exporter = metrics_exporter.new_metrics_exporter(
 
 # Tracing
 tracer = Tracer(
-    exporter=AzureExporter(
-    connection_string='InstrumentationKey=acd254b2-d6fc-4337-b024-0dfc99f09841'),
-    sampler=ProbabilitySampler(1.0)
+    exporter=AzureExporter(connection_string='InstrumentationKey=acd254b2-d6fc-4337-b024-0dfc99f09841'),
+    sampler=ProbabilitySampler(1.0),
 )
 app = Flask(__name__)
 
@@ -107,11 +106,11 @@ def index():
             r.set(button2,0)
             vote1 = r.get(button1).decode('utf-8')
             properties = {'custom_dimensions': {'Cats Vote': vote1}}
-            logger.warning('action', extra=properties)
+            logger.warning('cat', extra=properties)
 
             vote2 = r.get(button2).decode('utf-8')
             properties = {'custom_dimensions': {'Dogs Vote': vote2}}
-            logger.warning('action', extra=properties)
+            logger.warning('dog', extra=properties)
 
             return render_template("index.html", value1=int(vote1), value2=int(vote2), button1=button1, button2=button2, title=title)
 
