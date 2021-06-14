@@ -25,19 +25,19 @@ from opencensus.ext.flask.flask_middleware import FlaskMiddleware
 logger = logging.getLogger(__name__)
 # TODO: replace the all-zero GUID with your instrumentation key.
 logger.addHandler(AzureLogHandler(
-    connection_string='InstrumentationKey=c26feae7-2d5f-4cc7-9fd9-4aa3de5fd1fb')
+    connection_string='InstrumentationKey=2ef419d3-6ca1-47e0-82f3-947a4fc4b2f2')
 )
 logger.setLevel(logging.INFO)
 
 # Metrics
 exporter = metrics_exporter.new_metrics_exporter(
   enable_standard_metrics=True,
-  connection_string='InstrumentationKey=c26feae7-2d5f-4cc7-9fd9-4aa3de5fd1fb')
+  connection_string='InstrumentationKey=2ef419d3-6ca1-47e0-82f3-947a4fc4b2f2')
 
 
 # Tracing
 tracer = Tracer(
-    exporter=AzureExporter(connection_string='InstrumentationKey=c26feae7-2d5f-4cc7-9fd9-4aa3de5fd1fb'),
+    exporter=AzureExporter(connection_string='InstrumentationKey=2ef419d3-6ca1-47e0-82f3-947a4fc4b2f2'),
     sampler=ProbabilitySampler(1.0),
 )
 app = Flask(__name__)
@@ -45,7 +45,7 @@ app = Flask(__name__)
 # Requests
 middleware = FlaskMiddleware(
     app,
-    exporter=AzureExporter(connection_string="InstrumentationKey=c26feae7-2d5f-4cc7-9fd9-4aa3de5fd1fb"),
+    exporter=AzureExporter(connection_string="InstrumentationKey=2ef419d3-6ca1-47e0-82f3-947a4fc4b2f2"),
     sampler=ProbabilitySampler(rate=1.0),
 )
 
@@ -109,6 +109,7 @@ def index():
             # Empty table and return results
             r.set(button1,0)
             r.set(button2,0)
+
             vote1 = r.get(button1).decode('utf-8')
             properties = {'custom_dimensions': {'Cats Vote': vote1}}
             logger.warning('Voted for cats', extra=properties)
