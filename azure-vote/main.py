@@ -25,19 +25,19 @@ from opencensus.ext.flask.flask_middleware import FlaskMiddleware
 logger = logging.getLogger(__name__)
 # TODO: replace the all-zero GUID with your instrumentation key.
 logger.addHandler(AzureLogHandler(
-    connection_string='InstrumentationKey=2ef419d3-6ca1-47e0-82f3-947a4fc4b2f2;IngestionEndpoint=https://westus2-2.in.applicationinsights.azure.com/')
+    connection_string='InstrumentationKey=2ef419d3-6ca1-47e0-82f3-947a4fc4b2f2')
 )
 logger.setLevel(logging.INFO)
 
 # Metrics
 exporter = metrics_exporter.new_metrics_exporter(
   enable_standard_metrics=True,
-  connection_string='InstrumentationKey=2ef419d3-6ca1-47e0-82f3-947a4fc4b2f2;IngestionEndpoint=https://westus2-2.in.applicationinsights.azure.com/')
+  connection_string='InstrumentationKey=2ef419d3-6ca1-47e0-82f3-947a4fc4b2f2')
 
 
 # Tracing
 tracer = Tracer(
-    exporter=AzureExporter(connection_string='InstrumentationKey=2ef419d3-6ca1-47e0-82f3-947a4fc4b2f2;IngestionEndpoint=https://westus2-2.in.applicationinsights.azure.com/'),
+    exporter=AzureExporter(connection_string='InstrumentationKey=2ef419d3-6ca1-47e0-82f3-947a4fc4b2f2'),
     sampler=ProbabilitySampler(1.0),
 )
 app = Flask(__name__)
@@ -45,7 +45,7 @@ app = Flask(__name__)
 # Requests
 middleware = FlaskMiddleware(
     app,
-    exporter=AzureExporter(connection_string="InstrumentationKey=2ef419d3-6ca1-47e0-82f3-947a4fc4b2f2;IngestionEndpoint=https://westus2-2.in.applicationinsights.azure.com/"),
+    exporter=AzureExporter(connection_string="InstrumentationKey=2ef419d3-6ca1-47e0-82f3-947a4fc4b2f2"),
     sampler=ProbabilitySampler(rate=1.0),
 )
 
