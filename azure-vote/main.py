@@ -26,22 +26,22 @@ from opencensus.ext.azure.log_exporter import AzureEventHandler
 logger = logging.getLogger(__name__)
 # TODO: replace the all-zero GUID with your instrumentation key.
 #logger.addHandler(AzureLogHandler(
-#    connection_string='InstrumentationKey=5cd594a1-db9d-45d5-8ba6-7aec0ab98dbd;IngestionEndpoint=https://westus2-0.in.applicationinsights.azure.com/')
+#    connection_string='InstrumentationKey=a8e71e06-7d65-4beb-9db5-42edd531d8bc;IngestionEndpoint=https://westus2-2.in.applicationinsights.azure.com/')
 #)
 logger.addHandler(AzureEventHandler(
-    connection_string='InstrumentationKey=5cd594a1-db9d-45d5-8ba6-7aec0ab98dbd;IngestionEndpoint=https://westus2-0.in.applicationinsights.azure.com/')
+    connection_string='InstrumentationKey=a8e71e06-7d65-4beb-9db5-42edd531d8bc;IngestionEndpoint=https://westus2-2.in.applicationinsights.azure.com/')
 )
 logger.setLevel(logging.INFO)
 
 # Metrics
 exporter = metrics_exporter.new_metrics_exporter(
   enable_standard_metrics=True,
-  connection_string='InstrumentationKey=5cd594a1-db9d-45d5-8ba6-7aec0ab98dbd;IngestionEndpoint=https://westus2-0.in.applicationinsights.azure.com/')
+  connection_string='InstrumentationKey=a8e71e06-7d65-4beb-9db5-42edd531d8bc;IngestionEndpoint=https://westus2-2.in.applicationinsights.azure.com/')
 
 
 # Tracing
 tracer = Tracer(
-    exporter=AzureExporter(connection_string='InstrumentationKey=5cd594a1-db9d-45d5-8ba6-7aec0ab98dbd;IngestionEndpoint=https://westus2-0.in.applicationinsights.azure.com/'),
+    exporter=AzureExporter(connection_string='InstrumentationKey=a8e71e06-7d65-4beb-9db5-42edd531d8bc;IngestionEndpoint=https://westus2-2.in.applicationinsights.azure.com/'),
     sampler=ProbabilitySampler(1.0),
 )
 app = Flask(__name__)
@@ -49,7 +49,7 @@ app = Flask(__name__)
 # Requests
 middleware = FlaskMiddleware(
     app,
-    exporter=AzureExporter(connection_string="InstrumentationKey=5cd594a1-db9d-45d5-8ba6-7aec0ab98dbd;IngestionEndpoint=https://westus2-0.in.applicationinsights.azure.com/"),
+    exporter=AzureExporter(connection_string="InstrumentationKey=a8e71e06-7d65-4beb-9db5-42edd531d8bc;IngestionEndpoint=https://westus2-2.in.applicationinsights.azure.com/"),
     sampler=ProbabilitySampler(rate=1.0),
 )
 
