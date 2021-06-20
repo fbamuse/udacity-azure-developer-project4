@@ -25,9 +25,9 @@ from opencensus.ext.azure.log_exporter import AzureEventHandler
 # Logging
 logger = logging.getLogger(__name__)
 # TODO: replace the all-zero GUID with your instrumentation key.
-#logger.addHandler(AzureLogHandler(
-#    connection_string='InstrumentationKey=f97b4281-262c-497d-8eda-6d2a40c534e3;IngestionEndpoint=https://westus2-2.in.applicationinsights.azure.com/')
-#)
+logger.addHandler(AzureLogHandler(
+    connection_string='InstrumentationKey=f97b4281-262c-497d-8eda-6d2a40c534e3;IngestionEndpoint=https://westus2-2.in.applicationinsights.azure.com/')
+)
 logger.addHandler(AzureEventHandler(
     connection_string='InstrumentationKey=f97b4281-262c-497d-8eda-6d2a40c534e3;IngestionEndpoint=https://westus2-2.in.applicationinsights.azure.com/')
 )
