@@ -1,6 +1,6 @@
 # RunBook Screenshots
 
-Please the required screenshots for RunBook in this directory.
+
 
 ## The summary of the alert which shows 'why did this alert fire?', timestamps, and the criterion in which it fired.
 

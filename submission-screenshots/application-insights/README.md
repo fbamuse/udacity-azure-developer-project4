@@ -6,3 +6,4 @@ Please the required screenshots for Application Insights in this directory.
 ![](2021-06-21-10-58-42.png)
 ![](2021-06-21-11-51-56.png)
 ![](2021-06-21-11-52-24.png)
+
