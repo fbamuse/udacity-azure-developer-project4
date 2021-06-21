@@ -105,7 +105,7 @@ def index():
 
 
             vote1 = r.get(button1).decode('utf-8')
-            properties = {'custom_dmensions': {'Cats Vote': vote1}}
+            properties = {'custom_dimensions': {'Cats Vote': vote1}}
             # TODO: use logger object to log cat vote
             logger.info('CAT_Vote', extra=properties)
             #logger.info('Cats')
