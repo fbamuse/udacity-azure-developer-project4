@@ -18,6 +18,7 @@ from opencensus.stats import view as view_module
 from opencensus.tags import tag_map as tag_map_module
 from opencensus.ext.azure.trace_exporter import AzureExporter
 from opencensus.trace.samplers import ProbabilitySampler
+from opencensus.trace.samplers import always_on
 from opencensus.trace.tracer import Tracer
 from opencensus.ext.flask.flask_middleware import FlaskMiddleware
 from opencensus.ext.azure.log_exporter import AzureEventHandler
@@ -26,31 +27,31 @@ from opencensus.ext.azure.log_exporter import AzureEventHandler
 logger = logging.getLogger(__name__)
 # TODO: replace the all-zero GUID with your instrumentation key.
 logger.addHandler(AzureLogHandler(
-    connection_string='InstrumentationKey=8c702533-74c6-42c8-b7ee-52f2ad212eca;IngestionEndpoint=https://westus2-2.in.applicationinsights.azure.com/')
+    connection_string='InstrumentationKey=c05c4480-e0b4-46aa-be27-cfdf45278e3f;IngestionEndpoint=https://westus2-2.in.applicationinsights.azure.com/')
 )
 logger.addHandler(AzureEventHandler(
-    connection_string='InstrumentationKey=8c702533-74c6-42c8-b7ee-52f2ad212eca;IngestionEndpoint=https://westus2-2.in.applicationinsights.azure.com/')
+    connection_string='InstrumentationKey=c05c4480-e0b4-46aa-be27-cfdf45278e3f;IngestionEndpoint=https://westus2-2.in.applicationinsights.azure.com/')
 )
 logger.setLevel(logging.INFO)
 
 # Metrics
 exporter = metrics_exporter.new_metrics_exporter(
   enable_standard_metrics=True,
-  connection_string='InstrumentationKey=8c702533-74c6-42c8-b7ee-52f2ad212eca;IngestionEndpoint=https://westus2-2.in.applicationinsights.azure.com/')
+  connection_string='InstrumentationKey=c05c4480-e0b4-46aa-be27-cfdf45278e3f;IngestionEndpoint=https://westus2-2.in.applicationinsights.azure.com/')
 
 
 # Tracing
 tracer = Tracer(
-    exporter=AzureExporter(connection_string='InstrumentationKey=8c702533-74c6-42c8-b7ee-52f2ad212eca;IngestionEndpoint=https://westus2-2.in.applicationinsights.azure.com/'),
-    sampler=ProbabilitySampler(rate=0.8),
+    exporter=AzureExporter(connection_string='InstrumentationKey=c05c4480-e0b4-46aa-be27-cfdf45278e3f;IngestionEndpoint=https://westus2-2.in.applicationinsights.azure.com/'),
+    sampler=always_on.AlwaysOnSampler(),
 )
 app = Flask(__name__)
 
 # Requests
 middleware = FlaskMiddleware(
     app,
-    exporter=AzureExporter(connection_string="InstrumentationKey=8c702533-74c6-42c8-b7ee-52f2ad212eca;IngestionEndpoint=https://westus2-2.in.applicationinsights.azure.com/"),
-    sampler=ProbabilitySampler(1.0),
+    exporter=AzureExporter(connection_string="InstrumentationKey=c05c4480-e0b4-46aa-be27-cfdf45278e3f;IngestionEndpoint=https://westus2-2.in.applicationinsights.azure.com/"),
+    sampler=always_on.AlwaysOnSampler(),
 )
 
 # Load configurations from environment or config file
