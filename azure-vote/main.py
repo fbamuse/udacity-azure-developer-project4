@@ -50,7 +50,7 @@ app = Flask(__name__)
 middleware = FlaskMiddleware(
     app,
     exporter=AzureExporter(connection_string="InstrumentationKey=2991b4ed-3b59-42d3-80df-c57f147762ae;IngestionEndpoint=https://westus2-2.in.applicationinsights.azure.com/"),
-    sampler=ProbabilitySampler(rate=1.0),
+    sampler=ProbabilitySampler(1.0),
 )
 
 # Load configurations from environment or config file
