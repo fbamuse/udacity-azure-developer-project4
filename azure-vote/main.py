@@ -107,13 +107,13 @@ def index():
             vote1 = r.get(button1).decode('utf-8')
             properties = {'custom_dimensions': {'Cats Vote': vote1}}
             # TODO: use logger object to log cat vote
-            logger.info('Custom', extra=properties)
+            logger.info('CAT', extra=properties)
             #logger.info('Cats')
 
             vote2 = r.get(button2).decode('utf-8')
             properties = {'custom_dimensions': {'Dogs Vote': vote2}}
             # TODO: use logger object to log dog vote
-            logger.info('Custom', extra=properties)
+            logger.info('DOG', extra=properties)
             #logger.info('Dogs')
 
             # Empty table and return results
