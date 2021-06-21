@@ -18,7 +18,7 @@ from opencensus.stats import view as view_module
 from opencensus.tags import tag_map as tag_map_module
 from opencensus.ext.azure.trace_exporter import AzureExporter
 from opencensus.trace.samplers import ProbabilitySampler
-from opencensus.trace.samplers import always_on
+#from opencensus.trace.samplers import always_on
 from opencensus.trace.tracer import Tracer
 from opencensus.ext.flask.flask_middleware import FlaskMiddleware
 from opencensus.ext.azure.log_exporter import AzureEventHandler
@@ -51,7 +51,7 @@ app = Flask(__name__)
 middleware = FlaskMiddleware(
     app,
     exporter=AzureExporter(connection_string="InstrumentationKey=c05c4480-e0b4-46aa-be27-cfdf45278e3f;IngestionEndpoint=https://westus2-2.in.applicationinsights.azure.com/"),
-    sampler=always_on.AlwaysOnSampler(),
+    sampler=ProbabilitySampler(2.0),
 )
 
 # Load configurations from environment or config file
