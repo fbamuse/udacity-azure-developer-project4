@@ -43,7 +43,7 @@ exporter = metrics_exporter.new_metrics_exporter(
 # Tracing
 tracer = Tracer(
     exporter=AzureExporter(connection_string='InstrumentationKey=c05c4480-e0b4-46aa-be27-cfdf45278e3f;IngestionEndpoint=https://westus2-2.in.applicationinsights.azure.com/'),
-    sampler=always_on.AlwaysOnSampler(),
+    sampler=ProbabilitySampler(1.0),
 )
 app = Flask(__name__)
 
